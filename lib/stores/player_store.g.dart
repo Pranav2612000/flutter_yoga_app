@@ -6,77 +6,80 @@ part of 'player_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PlayerStore on PlayerStoreBase, Store {
   Computed<bool> _$isFinishedComputed;
 
   @override
   bool get isFinished =>
-      (_$isFinishedComputed ??= Computed<bool>(() => super.isFinished)).value;
+      (_$isFinishedComputed ??= Computed<bool>(() => super.isFinished,
+              name: 'PlayerStoreBase.isFinished'))
+          .value;
   Computed<bool> _$isSkipEnabledComputed;
 
   @override
   bool get isSkipEnabled =>
-      (_$isSkipEnabledComputed ??= Computed<bool>(() => super.isSkipEnabled))
+      (_$isSkipEnabledComputed ??= Computed<bool>(() => super.isSkipEnabled,
+              name: 'PlayerStoreBase.isSkipEnabled'))
           .value;
   Computed<bool> _$isRewindEnabledComputed;
 
   @override
-  bool get isRewindEnabled => (_$isRewindEnabledComputed ??=
-          Computed<bool>(() => super.isRewindEnabled))
-      .value;
+  bool get isRewindEnabled =>
+      (_$isRewindEnabledComputed ??= Computed<bool>(() => super.isRewindEnabled,
+              name: 'PlayerStoreBase.isRewindEnabled'))
+          .value;
   Computed<PlayerPhase> _$playerPhaseComputed;
 
   @override
   PlayerPhase get playerPhase =>
-      (_$playerPhaseComputed ??= Computed<PlayerPhase>(() => super.playerPhase))
+      (_$playerPhaseComputed ??= Computed<PlayerPhase>(() => super.playerPhase,
+              name: 'PlayerStoreBase.playerPhase'))
           .value;
   Computed<int> _$currentAsanaBlockIndexComputed;
 
   @override
   int get currentAsanaBlockIndex => (_$currentAsanaBlockIndexComputed ??=
-          Computed<int>(() => super.currentAsanaBlockIndex))
+          Computed<int>(() => super.currentAsanaBlockIndex,
+              name: 'PlayerStoreBase.currentAsanaBlockIndex'))
       .value;
   Computed<String> _$currentAsanaUniqueNameComputed;
 
   @override
   String get currentAsanaUniqueName => (_$currentAsanaUniqueNameComputed ??=
-          Computed<String>(() => super.currentAsanaUniqueName))
+          Computed<String>(() => super.currentAsanaUniqueName,
+              name: 'PlayerStoreBase.currentAsanaUniqueName'))
       .value;
 
   final _$isPlayingAtom = Atom(name: 'PlayerStoreBase.isPlaying');
 
   @override
   bool get isPlaying {
-    _$isPlayingAtom.context.enforceReadPolicy(_$isPlayingAtom);
-    _$isPlayingAtom.reportObserved();
+    _$isPlayingAtom.reportRead();
     return super.isPlaying;
   }
 
   @override
   set isPlaying(bool value) {
-    _$isPlayingAtom.context.conditionallyRunInAction(() {
+    _$isPlayingAtom.reportWrite(value, super.isPlaying, () {
       super.isPlaying = value;
-      _$isPlayingAtom.reportChanged();
-    }, _$isPlayingAtom, name: '${_$isPlayingAtom.name}_set');
+    });
   }
 
   final _$totalTimerAtom = Atom(name: 'PlayerStoreBase.totalTimer');
 
   @override
   Duration get totalTimer {
-    _$totalTimerAtom.context.enforceReadPolicy(_$totalTimerAtom);
-    _$totalTimerAtom.reportObserved();
+    _$totalTimerAtom.reportRead();
     return super.totalTimer;
   }
 
   @override
   set totalTimer(Duration value) {
-    _$totalTimerAtom.context.conditionallyRunInAction(() {
+    _$totalTimerAtom.reportWrite(value, super.totalTimer, () {
       super.totalTimer = value;
-      _$totalTimerAtom.reportChanged();
-    }, _$totalTimerAtom, name: '${_$totalTimerAtom.name}_set');
+    });
   }
 
   final _$_currentQueueItemIndexAtom =
@@ -84,19 +87,16 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   int get _currentQueueItemIndex {
-    _$_currentQueueItemIndexAtom.context
-        .enforceReadPolicy(_$_currentQueueItemIndexAtom);
-    _$_currentQueueItemIndexAtom.reportObserved();
+    _$_currentQueueItemIndexAtom.reportRead();
     return super._currentQueueItemIndex;
   }
 
   @override
   set _currentQueueItemIndex(int value) {
-    _$_currentQueueItemIndexAtom.context.conditionallyRunInAction(() {
+    _$_currentQueueItemIndexAtom
+        .reportWrite(value, super._currentQueueItemIndex, () {
       super._currentQueueItemIndex = value;
-      _$_currentQueueItemIndexAtom.reportChanged();
-    }, _$_currentQueueItemIndexAtom,
-        name: '${_$_currentQueueItemIndexAtom.name}_set');
+    });
   }
 
   final _$currentTimerDurationAtom =
@@ -104,19 +104,16 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   Duration get currentTimerDuration {
-    _$currentTimerDurationAtom.context
-        .enforceReadPolicy(_$currentTimerDurationAtom);
-    _$currentTimerDurationAtom.reportObserved();
+    _$currentTimerDurationAtom.reportRead();
     return super.currentTimerDuration;
   }
 
   @override
   set currentTimerDuration(Duration value) {
-    _$currentTimerDurationAtom.context.conditionallyRunInAction(() {
+    _$currentTimerDurationAtom.reportWrite(value, super.currentTimerDuration,
+        () {
       super.currentTimerDuration = value;
-      _$currentTimerDurationAtom.reportChanged();
-    }, _$currentTimerDurationAtom,
-        name: '${_$currentTimerDurationAtom.name}_set');
+    });
   }
 
   final _$PlayerStoreBaseActionController =
@@ -124,7 +121,8 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   void pausePlayer() {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction();
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase.pausePlayer');
     try {
       return super.pausePlayer();
     } finally {
@@ -134,7 +132,8 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   void startPlayer() {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction();
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase.startPlayer');
     try {
       return super.startPlayer();
     } finally {
@@ -144,7 +143,8 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   void _tickTotalTimer(Duration duration) {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction();
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase._tickTotalTimer');
     try {
       return super._tickTotalTimer(duration);
     } finally {
@@ -154,7 +154,8 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   void _tickCurrentTimer(Duration duration) {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction();
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase._tickCurrentTimer');
     try {
       return super._tickCurrentTimer(duration);
     } finally {
@@ -164,7 +165,8 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   void skipCurrentPhase() {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction();
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase.skipCurrentPhase');
     try {
       return super.skipCurrentPhase();
     } finally {
@@ -174,7 +176,8 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   void rewindCurrentPhaseOrGoBack() {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction();
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase.rewindCurrentPhaseOrGoBack');
     try {
       return super.rewindCurrentPhaseOrGoBack();
     } finally {
@@ -184,11 +187,27 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
 
   @override
   void _updateCurrentTimerDuration() {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction();
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase._updateCurrentTimerDuration');
     try {
       return super._updateCurrentTimerDuration();
     } finally {
       _$PlayerStoreBaseActionController.endAction(_$actionInfo);
     }
+  }
+
+  @override
+  String toString() {
+    return '''
+isPlaying: ${isPlaying},
+totalTimer: ${totalTimer},
+currentTimerDuration: ${currentTimerDuration},
+isFinished: ${isFinished},
+isSkipEnabled: ${isSkipEnabled},
+isRewindEnabled: ${isRewindEnabled},
+playerPhase: ${playerPhase},
+currentAsanaBlockIndex: ${currentAsanaBlockIndex},
+currentAsanaUniqueName: ${currentAsanaUniqueName}
+    ''';
   }
 }

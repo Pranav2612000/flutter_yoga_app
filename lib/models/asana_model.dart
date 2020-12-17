@@ -9,20 +9,25 @@ class AsanaModel {
     this.title,
     this.hindiTitle,
     this.imageUrl,
+    this.imageUrls,
     this.level,
     this.description,
     this.warnings,
+    this.steps,
   );
 
   final String uniqueName;
   final String title;
   final String hindiTitle;
   final String imageUrl;
+  final List<String> imageUrls;
   final double level;
   final String description;
   final String warnings;
+  final String steps;
 
-  factory AsanaModel.fromJson(Map<String, dynamic> json) => _$AsanaModelFromJson(json);
+  factory AsanaModel.fromJson(Map<String, dynamic> json) =>
+      _$AsanaModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AsanaModelToJson(this);
 
